@@ -9,7 +9,7 @@ public class LoginRequest {
     private String username;
 
     @NotBlank
-    @Schema(description = "Password for authentication", example = "password123")
+    @Schema(description = "Password for authentication", example = "securePassword123")
     private String password;
 
     public String getUsername() {
