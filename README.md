@@ -146,25 +146,34 @@ The Swagger UI provides:
 
 ### Swagger UI Overview
 
-![Swagger API Overview](docs/images/swagger-overview.png)
+<img width="1872" height="956" alt="image" src="https://github.com/user-attachments/assets/c7e427c4-31df-4180-82e6-86bba83a6df0" />
+
 
 The Swagger UI provides a complete interactive interface for testing all API endpoints.
 
 ### 1. Register a New User
 
-Use the `/api/auth/signup` endpoint to create a new user account with optional roles.
+Use the `/api/auth/signup` endpoint to create a new user account with roles "Moderator" and "User".
 
-![User Registration](docs/images/signup-request.png)
+<img width="1594" height="746" alt="image" src="https://github.com/user-attachments/assets/d400c611-65a9-462d-b8c9-c225586c46f9" />
 
-![User Registration Response](docs/images/signup-response.png)
+
+
+<img width="1597" height="207" alt="image" src="https://github.com/user-attachments/assets/2b025e6e-0f7d-4003-88ee-32eeb5e73777" />
+
 
 ### 2. Sign In
 
 Authenticate with the `/api/auth/signin` endpoint to receive JWT access token and refresh token.
 
-![User Sign In](docs/images/signin-request.png)
+<img width="1595" height="522" alt="image" src="https://github.com/user-attachments/assets/01fed82a-2416-4e87-915b-558a374a904f" />
 
-![User Sign In Response](docs/images/signin-response.png)
+
+
+
+
+<img width="1594" height="324" alt="image" src="https://github.com/user-attachments/assets/37fa9fd2-2a83-4ed8-a61c-25f06e5df66d" />
+
 
 **Response includes:**
 - `accessToken` - JWT token for API authentication
@@ -175,21 +184,32 @@ Authenticate with the `/api/auth/signin` endpoint to receive JWT access token an
 
 Click the "Authorize" button in Swagger UI and enter your access token to authenticate subsequent requests.
 
-![JWT Authorization](docs/images/swagger-authorize.png)
+<img width="724" height="313" alt="image" src="https://github.com/user-attachments/assets/cad2f096-9fe7-420c-ad11-256149531108" />
+
+
+<img width="728" height="316" alt="image" src="https://github.com/user-attachments/assets/b2034933-7cb8-4286-ad92-2d5414f5576d" />
+
+
+
 
 ### 4. Access Protected Endpoints
 
 Once authorized, you can access role-based endpoints like `/api/test/user`, `/api/test/mod`, or `/api/test/admin`.
 
-![Protected Endpoint Access](docs/images/protected-endpoint.png)
+<img width="1592" height="818" alt="image" src="https://github.com/user-attachments/assets/681f1afe-19ea-42d8-9c49-7347e47d8c8d" />
+
 
 ### 5. Refresh Access Token
 
 Use the `/api/auth/refreshtoken` endpoint with your refresh token to obtain a new access token and refresh token (automatic rotation).
 
-![Refresh Token Request](docs/images/refresh-request.png)
+<img width="1592" height="448" alt="image" src="https://github.com/user-attachments/assets/52ff951b-57da-4f85-a382-4313fef922c4" />
 
-![Refresh Token Response](docs/images/refresh-response.png)
+
+
+
+<img width="1591" height="213" alt="image" src="https://github.com/user-attachments/assets/a1043eb2-004c-4af0-b762-475caaeef287" />
+
 
 ## Security Features
 
