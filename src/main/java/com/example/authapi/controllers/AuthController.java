@@ -9,6 +9,11 @@ import com.example.authapi.models.RefreshToken;
 import com.example.authapi.payload.request.TokenRefreshRequest;
 import com.example.authapi.payload.response.TokenRefreshResponse;
 import com.example.authapi.security.services.RefreshTokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +63,14 @@ public class AuthController {
     @Autowired
     RefreshTokenService refreshTokenService;
 
+    @Operation(summary = "Sign in to the application", description = "Authenticates user credentials and returns JWT access token and refresh token",
+            tags = {"Public Endpoints"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully authenticated",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = JwtResponse.class))),
+            @ApiResponse(responseCode = "401", description = "Invalid credentials",
+                    content = @Content)
+    })
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -80,6 +93,14 @@ public class AuthController {
                 userDetails.getUsername(), userDetails.getEmail(), roles));
     }
 
+    @Operation(summary = "Refresh access token", description = "Uses refresh token to generate a new access token and refresh token",
+            tags = {"Public Endpoints"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully refreshed token",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = TokenRefreshResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Invalid or expired refresh token",
+                    content = @Content)
+    })
     @PostMapping("/refreshtoken")
     public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
         String requestRefreshToken = request.getRefreshToken();
@@ -98,6 +119,14 @@ public class AuthController {
         return ResponseEntity.ok(new TokenRefreshResponse(newAccessToken, newRefreshToken.getToken()));
     }
 
+    @Operation(summary = "Register a new user", description = "Creates a new user account with specified roles (defaults to USER if not specified)",
+            tags = {"Public Endpoints"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User registered successfully",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessageResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Username or email already exists",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessageResponse.class)))
+    })
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

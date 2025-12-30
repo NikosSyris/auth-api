@@ -2,22 +2,28 @@ package com.example.authapi.payload.request;
 
 import java.util.Set;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)
+    @Schema(description = "Username (3-20 characters)", example = "john_doe")
     private String username;
 
     @NotBlank
     @Size(max = 50)
     @Email
+    @Schema(description = "Email address", example = "john.doe@example.com")
     private String email;
 
+    @Schema(description = "User roles (admin, mod, user). Defaults to 'user' if not specified",
+            example = "[\"user\", \"mod\"]")
     private Set<String> role;
 
     @NotBlank
     @Size(min = 6, max = 40)
+    @Schema(description = "Password (6-40 characters)", example = "securePassword123")
     private String password;
 
     public String getUsername() {
